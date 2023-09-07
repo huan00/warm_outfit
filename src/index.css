@@ -1,4 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +17,49 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {padding: 0; margin: 0}
+
+.App {
+}
+
+.loading_screen {
+
+}
+
+.loading {
+  /* width: 50%;
+  height: 50%; */
+  background-color: black;
+  border-radius: 100%;
+  position: relative;
+  animation: loading 2s alternate-reverse infinite;
+}
+
+@keyframes loading {
+  0%{
+    top: 0;
+    left: 0
+  }
+  25%{
+    left: 50%;
+    top: 0;
+    background-color: red;
+  }
+  50%{
+    top: 50%;
+    left: 50%;
+    background-color: green;
+  }
+  75%{
+    top: 50%;
+    left: 0;
+    background-color: blue;
+  }
+  100%{
+    top: 0;
+    left: 0;
+    background-color: yellow;
+  }
 }

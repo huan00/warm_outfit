@@ -1,0 +1,123 @@
+[
+  {
+    "name": "beanie",
+    "keywords": ["hat", "beanie"],
+    "description": "A hat or beanie helps to retain heat and keep your head warm.",
+    "imageUrl": "./clothing/beanie.png"
+  },
+  {
+    "name": "boots",
+    "keywords": ["boots", "closed-toe shoes"],
+    "description": " Closed-toe shoes or boots with good insulation are essential for keeping your feet warm and dry",
+    "imageUrl": "./clothing/boots.png"
+  },
+  {
+    "name": "flip flop",
+    "keywords": ["flip flop", "open toes"],
+    "description": "Open-toed shoes like flip-flops or sandals are ideal for keeping your feet cool.",
+    "imageUrl": "./clothing/flip_flop.png"
+  },
+  {
+    "name": "gloves",
+    "keywords": ["gloves", "mittens"],
+    "description": "Keep your hands warm with insulated gloves or mittens.",
+    "imageUrl": "./clothing/gloves.png"
+  },
+  {
+    "name": "heavy jacket",
+    "keywords": ["heavy coat", "parka", "heavy jacket"],
+    "description": "A warm, insulated coat or parka is essential for keeping you warm in freezing temperatures.",
+    "imageUrl": "./clothing/heavy_jacket.png"
+  },
+  {
+    "name": "hoodie",
+    "keywords": ["pull over", "light sweater", "long sleeve"],
+    "description": "A lightweight sweater or pullover adds extra warmth and can be layered over your long-sleeve shirt.",
+    "imageUrl": "./clothing/hoodie.png"
+  },
+  {
+    "name": "jacket",
+    "keywords": ["medium-weight jacket", "jacket"],
+    "description": "A medium-weight jacket or coat made of materials like fleece, wool, or a quilted style can be suitable for this temperature range.",
+    "imageUrl": "./clothing/jacket.png"
+  },
+  {
+    "name": "light jacket",
+    "keywords": ["light jacket", "windbreaker"],
+    "description": "A light jacket, cardigan, or sweater is often sufficient for 60-degree weather, especially in the daytime",
+    "imageUrl": "./clothing/light_jacket.png"
+  },
+  {
+    "name": "long sleeve shirt",
+    "keywords": ["long sleeve shirt", "blouse"],
+    "description": "A base layer like a long-sleeve shirt or blouse provides warmth and can be paired with other layers.",
+    "imageUrl": "./clothing/long_sleeve_shirt.png"
+  },
+  {
+    "name": "sandals",
+    "keywords": ["sandals", "open toes"],
+    "description": "Comfortable and breathable footwear like sneakers or sandals is perfect for this weather.",
+    "imageUrl": "./clothing/sandals.png"
+  },
+  {
+    "name": "scarf",
+    "keywords": ["scarf"],
+    "description": "A scarf can help keep your neck warm and is easy to adjust as the temperature changes.",
+    "imageUrl": "./clothing/scarf.png"
+  },
+  {
+    "name": "shorts",
+    "keywords": ["shorts"],
+    "description": "horts are ideal for staying cool in 70-degree weather. They come in various styles and lengths.",
+    "imageUrl": "./clothing/shorts.png"
+  },
+  {
+    "name": "skirt",
+    "keywords": ["skirt"],
+    "description": "skirts for a comfortable and feminine look",
+    "imageUrl": "./clothing/skirt.png"
+  },
+  {
+    "name": "tank tops",
+    "keywords": ["tank tops"],
+    "description": "tank tops for a cool and comfortable summer look",
+    "imageUrl": "./clothing/tank_tops.png"
+  },
+
+  {
+    "name": "sneaker",
+    "keywords": ["sneaker", "closed-toe shoes"],
+    "description": "Closed-toe shoes or sneakers provide adequate protection and comfort for 50-degree weather.",
+    "imageUrl": "./clothing/sneaker.png"
+  },
+  {
+    "name": "sweater",
+    "keywords": ["lightweight sweater", "light sweater", "cardigan"],
+    "description": " A lightweight sweater or cardigan can be layered over your long-sleeve shirt for extra warmth.",
+    "imageUrl": "./clothing/sweater.png"
+  },
+  {
+    "name": "heavy_sweater",
+    "keywords": ["heavy sweater", "fleece", "mid-layer"],
+    "description": "Wear a thick sweater or fleece as a mid-layer for added insulation.",
+    "imageUrl": "./clothing/heavy_sweater.png"
+  },
+  {
+    "name": "t-shirt",
+    "keywords": [
+      "t shirt",
+      "t-shirt",
+      "light shirt",
+      "short-sleeve",
+      "short sleeve"
+    ],
+    "description": "Short-sleeve t-shirts are comfortable for mild temperatures",
+    "imageUrl": "./clothing/t-shirt.png"
+  },
+  {
+    "name": "sunglasses",
+    "keywords": ["glasses", "sunglasses"],
+    "description": "sunglasses can protect your eyes from the sun's glare",
+    "imageUrl": "./clothing/sunglasses.png"
+  }
+]

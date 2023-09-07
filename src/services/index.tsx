@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { OutfitResponse } from '../typings/weather'
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
@@ -24,5 +25,5 @@ export const getMyOutfit = async (weather: {
     weather
   )
 
-  return res.data
+  return res.data as OutfitResponse
 }

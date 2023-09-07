@@ -1,0 +1,6 @@
+export { default as head } from './head.png'
+export { default as torso } from './torso.png'
+export { default as scarf } from './scarf.png'
+export { default as legs } from './legs.png'
+export { default as feet } from './feet.png'
+export { default as accessories } from './accessories.png'
