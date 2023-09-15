@@ -86,13 +86,11 @@ export type WeatherResponse = {
 }
 
 export type OutfitResponse = {
-  weather_condition: string
-  data: {
-    head: string[]
-    tops: string[]
-    jacket: string[]
-    bottoms: string[]
-    footware: string[]
-    accessories: string[]
-  }
+  suggestion: string
+  head: string[]
+  tops: string[]
+  jacket: string[]
+  bottom: string[]
+  shoe: string[]
+  accessory: string[]
 }
