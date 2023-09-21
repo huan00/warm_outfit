@@ -94,3 +94,15 @@ export type OutfitResponse = {
   shoe: string[]
   accessory: string[]
 }
+
+export type RegisterData = {
+  email: string
+  username: string
+  password: string
+  confirm_password: string
+  full_name: string
+  address: string
+  city: string
+  state: string
+  zip_code: string
+}

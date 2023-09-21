@@ -64,7 +64,11 @@ const Avartar = ({ data }: props) => {
           </div>
           <div className="flex mx-4 w-3/4 overflow-x-scroll justify-start">
             {data?.accessory.map((item) => (
-              <GearSlot imgUrl={getImg(item)} name={item} />
+              <GearSlot
+                imgUrl={getImg(item)}
+                name={item}
+                key={Math.random() + item}
+              />
             ))}
           </div>
         </div>
@@ -75,7 +79,11 @@ const Avartar = ({ data }: props) => {
           </div>
           <div className="flex mx-4 w-3/4 overflow-x-scroll justify-start">
             {data?.head.map((item) => (
-              <GearSlot imgUrl={getImg(item)} name={item} />
+              <GearSlot
+                imgUrl={getImg(item)}
+                name={item}
+                key={Math.random() + item}
+              />
             ))}
           </div>
         </div>
@@ -90,7 +98,7 @@ const Avartar = ({ data }: props) => {
                 imgUrl={getImg(item)}
                 name={item}
                 icons={true}
-                key={Math.random()}
+                key={Math.random() + item}
               />
             ))}
           </div>
@@ -102,7 +110,11 @@ const Avartar = ({ data }: props) => {
           </div>
           <div className="flex mx-4 w-3/4 overflow-x-scroll justify-start">
             {data?.jacket.map((item) => (
-              <GearSlot imgUrl={getImg(item)} name={item} />
+              <GearSlot
+                imgUrl={getImg(item)}
+                name={item}
+                key={Math.random() + item}
+              />
             ))}
           </div>
         </div>
@@ -113,7 +125,11 @@ const Avartar = ({ data }: props) => {
           </div>
           <div className="flex mx-4 w-3/4 overflow-x-scroll justify-start">
             {data?.bottom.map((item) => (
-              <GearSlot imgUrl={getImg(item)} name={item} />
+              <GearSlot
+                imgUrl={getImg(item)}
+                name={item}
+                key={Math.random() + item}
+              />
             ))}
           </div>
         </div>
@@ -124,7 +140,11 @@ const Avartar = ({ data }: props) => {
           </div>
           <div className="flex mx-4 w-3/4 overflow-x-scroll justify-start">
             {data?.shoe.map((item) => (
-              <GearSlot imgUrl={getImg(item)} name={item} />
+              <GearSlot
+                imgUrl={getImg(item)}
+                name={item}
+                key={Math.random() + item}
+              />
             ))}
           </div>
         </div>

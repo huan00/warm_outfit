@@ -21,7 +21,7 @@ const GearSlot = ({ imgUrl, name, border = true, icons = false }: props) => {
                 }
               : undefined
           }
-          className={`flex bg-slate-700 py-2 px-1 bg-opacity-50 absolute bottom-0 rounded
+          className={`flex w-full h-full bg-slate-700 py-2 px-1 bg-opacity-50 absolute bottom-0 rounded items-end justify-center
         ${
           imgUrl
             ? ''
