@@ -1,7 +1,21 @@
 import axios from 'axios'
-import { OutfitResponse } from '../typings/weather'
+import {
+  OutfitResponse,
+  RegisterType,
+  LoginType,
+  UserType,
+  ErrorType
+} from '../typings/weather'
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+const BASEURL = `http://localhost:8000/warm-weather`
+
+type ResType = {
+  token?: string
+  data?: {}
+  status?: number
+  statusText?: string
+}
 
 export const getWeather = async (location: {
   latitude: number
@@ -26,4 +40,39 @@ export const getMyOutfit = async (weather: {
   )
 
   return res.data as OutfitResponse
+}
+
+export const createUserAccount = async (data: RegisterType) => {
+  try {
+    const res: ResType = await axios.post(`${BASEURL}/user/register`, data)
+
+    return res
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return error.response as ResType
+    }
+  }
+}
+
+export const loginAccount = async (data: LoginType) => {
+  try {
+    const res = await axios.post(`${BASEURL}/user/login`, data)
+
+    return res.data
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return error
+    }
+  }
+}
+
+export const updateAccount = async (
+  data: UserType,
+  pk: number,
+  headers: object
+) => {
+  try {
+    const res = await axios.put(`${BASEURL}/user/update/${pk}`, data, headers)
+    return res
+  } catch (error) {}
 }

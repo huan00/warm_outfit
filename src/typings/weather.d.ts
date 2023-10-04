@@ -95,14 +95,38 @@ export type OutfitResponse = {
   accessory: string[]
 }
 
-export type RegisterData = {
-  email: string
+export interface LoginType {
   username: string
   password: string
+}
+
+export interface RegisterType extends LoginType {
+  email: string
   confirm_password: string
-  full_name: string
+  first_name: string
+  last_name
   address: string
   city: string
   state: string
   zip_code: string
+}
+
+export interface UserType {
+  id?: number
+  username: string
+  email: string
+  first_name: string
+  last_name: string
+  address: string
+  city: string
+  state: string
+  zip_code: string
+}
+
+export interface ErrorType {
+  data: {
+    error: string
+  }
+  status: number
+  StatusText: string
 }
