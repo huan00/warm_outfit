@@ -76,3 +76,12 @@ export const updateAccount = async (
     return res
   } catch (error) {}
 }
+
+export const deleteAccount = async (pk: number, headers: object) => {
+  try {
+    const res = await axios.delete(`${BASEURL}/user/delete/${pk}`, headers)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}

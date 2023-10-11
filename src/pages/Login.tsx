@@ -9,7 +9,11 @@ type UserCred = {
   password: string
 }
 
-const Login = () => {
+type PropsType = {
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+const Login = ({ setToken }: PropsType) => {
   const navigate = useNavigate()
   const [userCred, setUserCred] = useState<UserCred>({
     username: '',
@@ -27,6 +31,7 @@ const Login = () => {
       if (res) {
         sessionStorage.setItem('warm_weather_token', res.token)
         sessionStorage.setItem('warm_weather_user', JSON.stringify(res.data))
+        setToken(res.token)
         navigate('/')
       }
     }
