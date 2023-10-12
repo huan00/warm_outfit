@@ -15,6 +15,7 @@ type PropsType = {
 
 const Login = ({ setToken }: PropsType) => {
   const navigate = useNavigate()
+  const [loginError, setLoginError] = useState(false)
   const [userCred, setUserCred] = useState<UserCred>({
     username: '',
     password: ''
@@ -27,19 +28,24 @@ const Login = ({ setToken }: PropsType) => {
   const handleLogin = async () => {
     if (userCred.username && userCred.password) {
       const res = await loginAccount(userCred)
+      console.log(res)
+      if (res.response) {
+        setLoginError(true)
+      }
 
-      if (res) {
+      if (res.data) {
         sessionStorage.setItem('warm_weather_token', res.token)
         sessionStorage.setItem('warm_weather_user', JSON.stringify(res.data))
         setToken(res.token)
+        setLoginError(false)
         navigate('/')
       }
     }
   }
   const navigateToRegister = (): void => navigate('/register')
-
+  console.log(loginError)
   return (
-    <div className="h-screen flex flex-col justify-center self-center">
+    <div className="w-3/4 md:w-1/4 h-screen flex flex-col justify-center self-center">
       <InputField
         placeholder="Username"
         name="username"
@@ -53,6 +59,11 @@ const Login = ({ setToken }: PropsType) => {
         onChange={handleOnChange}
         errorColor={false}
       />
+      {loginError && (
+        <p className="text-red-700 font-extrabold bg-black px-2 py-2 rounded-md">
+          Login error!! Check user and Password
+        </p>
+      )}
       <CustomBtn title="Login" onClick={handleLogin} />
       <div className="mt-4">
         <p>

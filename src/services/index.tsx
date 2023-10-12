@@ -3,8 +3,7 @@ import {
   OutfitResponse,
   RegisterType,
   LoginType,
-  UserType,
-  ErrorType
+  UserType
 } from '../typings/weather'
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY

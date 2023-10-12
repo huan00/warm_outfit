@@ -32,7 +32,6 @@ const Avartar = ({ data }: props) => {
 
     return result
   }
-
   const getImg = (name: string) => {
     const result = IMGLIST.map((object) => {
       let match: boolean = false
@@ -124,7 +123,7 @@ const Avartar = ({ data }: props) => {
             <GearSlot name="Pants" />
           </div>
           <div className="flex mx-4 w-3/4 overflow-x-scroll justify-start">
-            {data?.bottom.map((item) => (
+            {data?.pants.map((item) => (
               <GearSlot
                 imgUrl={getImg(item)}
                 name={item}

@@ -247,6 +247,13 @@ const Profile = ({ setToken }: PropsType) => {
             </div>
           )}
         </div>
+        <div className="mt-4 bg-slate-200 bg-opacity-50 rounded-md px-2 py-4">
+          <p>Promp keywords</p>
+          <div>
+            <p>gender</p>
+            <p>sensitive to cold</p>
+          </div>
+        </div>
         {!isEdit && (
           <div className="flex w-screen absolute bottom-2 justify-center">
             <div className="w-1/2">

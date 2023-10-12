@@ -90,7 +90,7 @@ export type OutfitResponse = {
   head: string[]
   tops: string[]
   jacket: string[]
-  bottom: string[]
+  pants: string[]
   shoe: string[]
   accessory: string[]
 }
@@ -129,4 +129,19 @@ export interface ErrorType {
   }
   status: number
   StatusText: string
+}
+
+export interface PromptSelectType {
+  value: string
+  label: string
+}
+
+export interface InputDataType {
+  temperature_high: string
+  temperature_low: string
+  wind: string
+  humidity: string
+  condition: string
+  gender: string
+  sensitivity: string
 }
