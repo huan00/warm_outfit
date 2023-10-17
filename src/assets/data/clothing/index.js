@@ -104,49 +104,91 @@ import { default as tank_tops } from './tank_tops.png'
 // }
 
 export const IMGLIST = [
-  { name: beanie, imgUrl: beanie, keywords: ['hat', 'beanie'] },
-  { name: boots, imgUrl: boots, keywords: ['boots', 'closed-toe shoes'] },
-  { name: flip_flop, imgUrl: flip_flop, keywords: ['flip flop', 'open toes'] },
-  { name: gloves, imgUrl: gloves, keywords: ['gloves', 'mittens'] },
+  {
+    name: beanie,
+    imgUrl: beanie,
+    keywords: ['hat', 'beanie', 'baseball cap'],
+    category: 'headwear'
+  },
+  {
+    name: boots,
+    imgUrl: boots,
+    keywords: ['boots', 'closed-toe shoes'],
+    category: 'footwear'
+  },
+  {
+    name: flip_flop,
+    imgUrl: flip_flop,
+    keywords: ['flip flop', 'open toes'],
+    category: 'footwear'
+  },
+  {
+    name: gloves,
+    imgUrl: gloves,
+    keywords: ['lightweight gloves', 'gloves', 'mittens'],
+    category: 'accessory'
+  },
   {
     name: heavy_jacket,
     imgUrl: heavy_jacket,
-    keywords: ['heavy coat', 'parka', 'heavy jacket']
+    keywords: ['heavy coat', 'parka', 'heavy jacket'],
+    category: 'jacket'
   },
   {
     name: hoodie,
     imgUrl: hoodie,
-    keywords: ['pull over', 'hoodie', 'light sweater', 'long sleeve']
+    keywords: ['pull over', 'hoodie', 'light sweater', 'long sleeve'],
+    category: 'tops'
   },
   {
     name: jacket,
     imgUrl: jacket,
-    keywords: ['medium-weight jacket', 'jacket']
+    keywords: ['medium-weight jacket', 'jacket'],
+    category: 'jacket'
   },
-  { name: jeans, imgUrl: jeans, keywords: ['jeans'] },
+  { name: jeans, imgUrl: jeans, keywords: ['jeans'], category: 'pants' },
   {
     name: light_jacket,
     imgUrl: light_jacket,
-    keywords: ['light jacket', 'windbreaker']
+    keywords: ['light jacket', 'windbreaker'],
+    category: 'jacket'
   },
   {
     name: long_sleeve_shirt,
     imgUrl: long_sleeve_shirt,
-    keywords: ['long sleeve shirt', 'blouse']
+    keywords: ['long sleeve shirt', 'blouse'],
+    category: 'tops'
   },
-  { name: sandals, imgUrl: sandals, keywords: ['sandals', 'open toes'] },
-  { name: scarf, imgUrl: scarf, keywords: ['scarf'] },
-  { name: shorts, imgUrl: shorts, keywords: ['shorts'] },
-  { name: sneaker, imgUrl: sneaker, keywords: ['sneaker', 'closed-toe shoes'] },
+  {
+    name: sandals,
+    imgUrl: sandals,
+    keywords: ['sandals', 'open toes'],
+    category: 'footwear'
+  },
+  {
+    name: scarf,
+    imgUrl: scarf,
+    keywords: ['light weight scarf', 'scarf'],
+    category: 'accessory'
+  },
+  { name: shorts, imgUrl: shorts, keywords: ['shorts'], category: 'pants' },
+  {
+    name: sneaker,
+    imgUrl: sneaker,
+    keywords: ['sneakers', 'closed-toe shoes', 'boat shoes'],
+    category: 'footwear'
+  },
   {
     name: sweater,
     imgUrl: sweater,
-    keywords: ['lightweight sweater', 'light sweater', 'cardigan']
+    keywords: ['lightweight sweater', 'light sweater', 'cardigan'],
+    category: 'tops'
   },
   {
     name: heavy_sweater,
     imgUrl: heavy_sweater,
-    keywords: ['heavy sweater', 'fleece', 'mid-layer']
+    keywords: ['heavy sweater', 'fleece', 'mid-layer'],
+    category: 'tops'
   },
   {
     name: t_shirt,
@@ -157,12 +199,19 @@ export const IMGLIST = [
       'light shirt',
       'short-sleeve',
       'short sleeve'
-    ]
+    ],
+    category: 'tops'
   },
   {
     name: sunglasses,
     imgUrl: sunglasses,
-    keywords: ['glasses', 'sunglasses', 'sun glasses']
+    keywords: ['glasses', 'sunglasses', 'sun glasses'],
+    category: 'accessory'
   },
-  { name: tank_tops, imgUrl: tank_tops, keywords: ['tank tops'] }
+  {
+    name: tank_tops,
+    imgUrl: tank_tops,
+    keywords: ['tank tops'],
+    category: 'tops'
+  }
 ]

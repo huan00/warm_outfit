@@ -4,10 +4,10 @@ import Loading from '../components/Loading'
 import Select from 'react-select'
 
 import {
-  InputDataType,
   OutfitResponse,
   PromptSelectType,
-  WeatherResponse
+  WeatherResponse,
+  UserType
 } from '../typings/weather'
 import Weather from '../pages/Weather'
 import Avartar from '../pages/Avartar'
@@ -15,10 +15,22 @@ import CustomBtn from '../components/CustomBtn'
 import { genderOptions, sensitivityToCold } from '../constants/PromptOptions'
 
 const Home = () => {
+  const userExist = sessionStorage.getItem('warm_weather_user')
+  const user: UserType = userExist ? JSON.parse(userExist) : undefined
+
   const [genderSelectedOption, setGenderSelectedOption] =
-    useState<PromptSelectType>(genderOptions[0])
+    useState<PromptSelectType>(
+      user
+        ? { value: user.prompts.gender, label: user.prompts.gender }
+        : genderOptions[0]
+    )
   const [sensitivityCold, setSensitivityCold] = useState<PromptSelectType>(
-    sensitivityToCold[0]
+    user
+      ? {
+          value: user.prompts.sensitivity_to_cold,
+          label: user.prompts.sensitivity_to_cold
+        }
+      : sensitivityToCold[0]
   )
   const [location, setLocation] = useState<{
     latitude: number
@@ -27,24 +39,6 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState<WeatherResponse>()
   const [outfit, setOutfit] = useState<OutfitResponse | undefined>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  //   {
-  //   head: ['Hat'],
-  //   tops: [
-  //     'Cotton t-shirt',
-  //     'Light cardigan',
-  //     'Cotton t-shirt',
-  //     'Light cardigan',
-  //     'Cotton t-shirt',
-  //     'Light cardigan'
-  //   ],
-  //   jacket: [],
-  //   bottom: ['Light Denim Jeans'],
-  //   shoe: ['Canvas shoes'],
-  //   accessory: ['Sunglasses', 'Scarf'],
-  //   suggestion:
-  //     "Today's weather is right for you to lighten up and wear something airy and comfy. Suggested to wear a cotton t-shirt, light cardigan, light denim jeans, canvas shoes, add a hat, sunglasses and a scarf to complete the outfit. Enjoy this warm weather with your fashion!"
-  // }
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -87,7 +81,15 @@ const Home = () => {
       sensitivity: sensitivityCold.value
     }
 
-    console.log(InputData)
+    sessionStorage.setItem(
+      'warm_weather_gender',
+      JSON.stringify(genderSelectedOption)
+    )
+    sessionStorage.setItem(
+      'warm_weather_sensitivity',
+      JSON.stringify(sensitivityCold)
+    )
+
     setIsLoading(true)
     const res = await getMyOutfit(InputData)
     setOutfit(res)
@@ -95,51 +97,64 @@ const Home = () => {
   }
 
   return (
-    <div className="p-2 w-screen md:max-w-[1280px] flex flex-col self-center">
-      <div className="flex flex-col w-full">
-        <p className="text-white text-xl md:text-2xl">
-          Today's weather condition:
-        </p>
-        <div className="flex w-full flex-col">
-          {weatherData ? <Weather data={weatherData} /> : <Loading />}
-          {outfit ? (
-            <Avartar data={outfit} />
+    <div className="p-2 pt-12 w-screen h-screen md:min-h-screen md:h-full md:max-h-fit md:max-w-[1025px] flex flex-col self-center relative overflow-x-hidden ">
+      <div className="flex  w-full md:min-h-full">
+        <div className=" w-full flex flex-col md:min-h-full md:justify-start md:items-center relative ">
+          {weatherData ? (
+            <div className="flex flex-col md:h-fit">
+              <p className="text-white text-xl md:text-2xl">
+                Today's weather condition:
+              </p>
+              <Weather data={weatherData} />
+            </div>
           ) : (
-            <div className="w-full">
-              <p>Fill out the below info for an outfit</p>
-              <label>Gender</label>
-              <Select
-                options={genderOptions}
-                value={genderSelectedOption}
-                onChange={(e) => {
-                  if (e) {
-                    setGenderSelectedOption(e)
-                  }
-                }}
-              />
-              <label>Sensitivity to cold</label>
-              <Select
-                options={sensitivityToCold}
-                value={sensitivityCold}
-                onChange={(e) => {
-                  if (e) {
-                    setSensitivityCold(e)
-                  }
-                }}
-              />
-
-              <div className="flex w-full justify-center items-center absolute bottom-4">
-                <div className="w-1/3">
-                  {isLoading ? (
-                    <div className="flex justify-center">
-                      <Loading />
-                    </div>
-                  ) : (
-                    <CustomBtn title="Get outfit" onClick={getoutfit} />
-                  )}
-                </div>
+            <Loading />
+          )}
+          {outfit ? (
+            <div className="flex justify-center ">
+              <Avartar data={outfit} />
+            </div>
+          ) : (
+            <div className="w-full h-full flex flex-col justify-between md:h-4/6 ">
+              <div>
+                <p>Fill out the below info for an outfit</p>
+                <label>Gender</label>
+                <Select
+                  options={genderOptions}
+                  value={genderSelectedOption}
+                  onChange={(e) => {
+                    if (e) {
+                      setGenderSelectedOption(e)
+                    }
+                  }}
+                />
+                <label>Sensitivity to cold</label>
+                <Select
+                  options={sensitivityToCold}
+                  value={sensitivityCold}
+                  onChange={(e) => {
+                    if (e) {
+                      setSensitivityCold(e)
+                    }
+                  }}
+                />
               </div>
             </div>
+          )}
+        </div>
+      </div>
+      <div className="flex w-full justify-center items-center absolute bottom-4 ">
+        <div className="w-1/2">
+          {isLoading ? (
+            <div className="flex justify-center">
+              <Loading />
+            </div>
+          ) : (
+            <CustomBtn
+              title={outfit ? 'Try Again' : 'Get outfit'}
+              onClick={getoutfit}
+              disable={location ? false : true}
+            />
           )}
         </div>
       </div>

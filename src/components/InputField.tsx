@@ -3,11 +3,12 @@ import { visibility } from '../assets'
 
 type props = {
   value?: string
-  placeholder: string
+  placeholder?: string
   name: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   inputType?: string
   errorColor: boolean
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
 }
 
 const InputField = ({
@@ -16,7 +17,8 @@ const InputField = ({
   onChange,
   name,
   inputType,
-  errorColor
+  errorColor,
+  onBlur
 }: props) => {
   const [isVisible, setIsVisible] = useState<boolean>(true)
 
@@ -24,19 +26,18 @@ const InputField = ({
     setIsVisible((isVisible) => !isVisible)
   }
 
-  // console.log(placeholder + ' ' + errorColor)
-
   return (
     <div className="flex w-full justify-center relative">
       <input
         value={value}
         name={name}
-        className="w-full h-12 outline-none rounded-lg py-1 px-4
-        mb-2
+        className="w-full h-12 outline-none border-b border-black py-1 px-4 bg-transparent
+        mb-2 text-black placeholder:text-black text-base
          "
         style={errorColor ? { color: 'red' } : { color: 'black' }}
         placeholder={placeholder}
         onChange={onChange}
+        onBlur={onBlur}
         type={isVisible ? inputType : ''}
       />
       {inputType === 'password' && (

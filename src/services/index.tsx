@@ -3,7 +3,8 @@ import {
   OutfitResponse,
   RegisterType,
   LoginType,
-  UserType
+  UserType,
+  PromptType
 } from '../typings/weather'
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
@@ -41,9 +42,13 @@ export const getMyOutfit = async (weather: {
   return res.data as OutfitResponse
 }
 
-export const createUserAccount = async (data: RegisterType) => {
+export const createUserAccount = async (
+  data: RegisterType,
+  promptData: PromptType
+) => {
+  const inputData = { userData: data, promptData }
   try {
-    const res: ResType = await axios.post(`${BASEURL}/user/register`, data)
+    const res: ResType = await axios.post(`${BASEURL}/user/register`, inputData)
 
     return res
   } catch (error) {

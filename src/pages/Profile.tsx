@@ -56,6 +56,7 @@ const Profile = ({ setToken }: PropsType) => {
       const res = await updateAccount(updateUser, userId, { headers })
       if (res?.status === 202) {
         sessionStorage.setItem('warm_weather_user', JSON.stringify(res.data))
+        setUpdateError(false)
       } else {
         setUpdateError(true)
         const userExist = sessionStorage.getItem('warm_weather_user')
@@ -94,7 +95,6 @@ const Profile = ({ setToken }: PropsType) => {
     }
     if (userId) {
       const res = await deleteAccount(userId, { headers })
-      console.log(res)
     }
 
     setIsDeleteAccount((prev) => !prev)
@@ -116,17 +116,17 @@ const Profile = ({ setToken }: PropsType) => {
           <div className="flex flex-1 pl-2">
             {user && (
               <p className=" text-white">
-                {user?.first_name[0].toUpperCase() +
-                  user?.first_name.slice(1) +
-                  ' ' +
-                  user?.last_name[0].toUpperCase() +
-                  user?.last_name.slice(1)}
+                {user.first_name[0] &&
+                  user?.first_name[0].toUpperCase() +
+                    user?.first_name.slice(1)}{' '}
+                {user.last_name &&
+                  user?.last_name[0].toUpperCase() + user?.last_name.slice(1)}
               </p>
             )}
           </div>
-          <div className="flex">
+          {/* <div className="flex">
             <CustomBtn title="Follow" onClick={() => {}} />
-          </div>
+          </div> */}
         </div>
         <div className="mt-4 bg-slate-200 bg-opacity-50 rounded-md px-2 py-4">
           <div className="flex justify-between items-center">
@@ -152,14 +152,10 @@ const Profile = ({ setToken }: PropsType) => {
           {!isEdit ? (
             <>
               <div>
-                <p className="px-1">email: {user?.email}</p>
+                <p className="px-1">E-mail: {user?.email}</p>
               </div>
               <div className="flex">
-                <p className="px-1">address: </p>
-                <p className="px-1">{user?.address}</p>
-                <p className="px-1">{user?.city}</p>
-                <p className="px-1">{user?.state}</p>
-                <p className="px-1">{user?.zip_code}</p>
+                <p className="px-1">Zip Code: {user?.zip_code}</p>
               </div>
             </>
           ) : (
@@ -167,7 +163,7 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="email">Email</label>
                 <InputField
-                  placeholder="email"
+                  // placeholder="email"
                   name="email"
                   value={user?.email}
                   onChange={handleUpdateChange}
@@ -177,7 +173,7 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="first_name">First Name</label>
                 <InputField
-                  placeholder="first_name"
+                  // placeholder="first name"
                   name="first_name"
                   value={user?.first_name}
                   onChange={handleUpdateChange}
@@ -187,47 +183,18 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="last_name">Last Name</label>
                 <InputField
-                  placeholder="last_name"
+                  // placeholder="last_name"
                   name="last_name"
                   value={user?.last_name}
                   onChange={handleUpdateChange}
                   errorColor={false}
                 />
               </div>
-              <div>
-                <label htmlFor="address">Address</label>
-                <InputField
-                  placeholder="address"
-                  name="address"
-                  value={user?.address}
-                  onChange={handleUpdateChange}
-                  errorColor={false}
-                />
-              </div>
-              <div>
-                <label htmlFor="city">City</label>
-                <InputField
-                  placeholder="city"
-                  name="city"
-                  value={user?.city}
-                  onChange={handleUpdateChange}
-                  errorColor={false}
-                />
-              </div>
-              <div>
-                <label htmlFor="state">State</label>
-                <InputField
-                  placeholder="state"
-                  name="state"
-                  value={user?.state}
-                  onChange={handleUpdateChange}
-                  errorColor={false}
-                />
-              </div>
+
               <div>
                 <label htmlFor="zip_code">Zip Code</label>
                 <InputField
-                  placeholder="zip_code"
+                  // placeholder="zip_code"
                   name="zip_code"
                   value={user?.zip_code}
                   onChange={handleUpdateChange}
@@ -250,8 +217,8 @@ const Profile = ({ setToken }: PropsType) => {
         <div className="mt-4 bg-slate-200 bg-opacity-50 rounded-md px-2 py-4">
           <p>Promp keywords</p>
           <div>
-            <p>gender</p>
-            <p>sensitive to cold</p>
+            <p>Gender: {user?.prompts.gender}</p>
+            <p>On 72°F: {user?.prompts.sensitivity_to_cold}</p>
           </div>
         </div>
         {!isEdit && (

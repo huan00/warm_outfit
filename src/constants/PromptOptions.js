@@ -4,16 +4,20 @@ export const genderOptions = [
 ]
 export const sensitivityToCold = [
   {
-    value: 'warmer than other people',
-    label: 'warmer than other people'
+    value: 'I feel cold',
+    label: 'I feel cold'
   },
   {
-    value: 'a little colder than other people',
-    label: 'a little colder than other people'
+    value: 'I feel a bit cool',
+    label: 'I feel a bit cool'
   },
-  { value: 'same as other people', label: 'same as other people' },
+  { value: 'I feel content', label: 'I feel content' },
   {
-    value: 'a lot colder than other people',
-    label: 'a lot colder than other people'
+    value: 'I feel toasty',
+    label: 'I feel toasty'
+  },
+  {
+    value: 'I feel hot',
+    label: 'I feel hot'
   }
 ]

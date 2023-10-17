@@ -10,7 +10,7 @@ const Weather = ({ data }: props) => {
   return (
     <>
       {data && (
-        <div className="w-full flex">
+        <div className="w-full flex justify-center">
           <WeatherIcon
             imgUrl={data.current.condition.icon}
             text={data.current.condition.text}

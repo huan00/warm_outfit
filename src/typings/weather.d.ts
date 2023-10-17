@@ -105,21 +105,6 @@ export interface RegisterType extends LoginType {
   confirm_password: string
   first_name: string
   last_name
-  address: string
-  city: string
-  state: string
-  zip_code: string
-}
-
-export interface UserType {
-  id?: number
-  username: string
-  email: string
-  first_name: string
-  last_name: string
-  address: string
-  city: string
-  state: string
   zip_code: string
 }
 
@@ -144,4 +129,31 @@ export interface InputDataType {
   condition: string
   gender: string
   sensitivity: string
+}
+
+export interface PromptType {
+  gender: string
+  sensitivityToCold: string
+}
+
+export interface ResType {
+  token?: string
+  data?: {
+    token?: string
+  }
+  status?: number
+  statusText?: string
+}
+
+export interface UserType {
+  id?: number
+  username: string
+  email: string
+  first_name: string
+  last_name: string
+  zip_code: string
+  prompts: {
+    gender: string
+    sensitivity_to_cold: string
+  }
 }

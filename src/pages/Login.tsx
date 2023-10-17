@@ -28,7 +28,7 @@ const Login = ({ setToken }: PropsType) => {
   const handleLogin = async () => {
     if (userCred.username && userCred.password) {
       const res = await loginAccount(userCred)
-      console.log(res)
+
       if (res.response) {
         setLoginError(true)
       }

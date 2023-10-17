@@ -15,7 +15,16 @@ function App() {
   }, [token])
 
   return (
-    <div className="App flex flex-col md:justify-start w-screen h-screen bg-image-hero bg-cover bg-no-repeat">
+    <div
+      className="App flex flex-col md:justify-start w-screen
+    bg-cover bg-no-repeat"
+      style={{
+        // background: 'rgb(238,174,202)',
+        background:
+          'linear-gradient(50deg, rgba(230,206,141,1) 0%, rgba(29,253,204,1) 57%, rgba(69,185,252,1) 100%)'
+      }}
+    >
+      {/* bg-image-hero  */}
       <Navbar token={token} setToken={setToken} />
       <Routes>
         <Route path="/" Component={Home} />
