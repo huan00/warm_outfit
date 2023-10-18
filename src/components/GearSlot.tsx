@@ -1,5 +1,4 @@
-import React from 'react'
-import { IMGLIST } from '../assets/data/clothing'
+import { STOCKIMG } from '../assets/stock'
 
 type props = {
   category: string
@@ -11,30 +10,12 @@ type props = {
   bgActive?: boolean
 }
 
-const GearSlot = ({
-  imgUrl,
-  name,
-  border = true,
-  icons = false,
-  category,
-  data,
-  bgActive = false
-}: props) => {
-  const getImg = (name: string, category: string) => {
-    if (name) {
-      const names = name.replace('-', ' ').toLowerCase()
-      const result = IMGLIST.filter((item) => item.keywords.includes(names))
-
-      if (result[0]) {
-        return result[0].imgUrl
-      } else {
-        const defaultImg = IMGLIST.filter(
-          (item) => item.category === category.toLowerCase()
-        )
-        return defaultImg[0] ? defaultImg[0].imgUrl : undefined
-      }
-    }
+const GearSlot = ({ category, data, bgActive = false }: props) => {
+  const displayStock = (category: string) => {
+    return STOCKIMG[category.toLowerCase()]
   }
+
+  console.log(displayStock(category))
 
   return (
     <div
@@ -58,8 +39,12 @@ const GearSlot = ({
           )}
         </div>
       </div>
-      <div className="flex flex-1 w-3/4 absolute -bottom-[35%] justify-center items-center">
-        <img src={data && getImg(data[0], category)} alt={category} />
+      <div className="flex w-3/4 relative top-[20%] md:top-1/3 items-start ">
+        <img
+          src={displayStock(category)}
+          alt={category}
+          className="w-full object-cover"
+        />
       </div>
     </div>
   )

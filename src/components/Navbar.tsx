@@ -17,7 +17,7 @@ const Navbar = ({ token, setToken }: PropsType) => {
   }
 
   return (
-    <div className="w-full h-12 flex justify-between items-center bg-slate-700 bg-opacity-50 px-4 z-10 absolute">
+    <div className="w-full h-12 flex justify-between items-center bg-slate-700 bg-opacity-50 px-4 z-10 fixed top-0">
       <div>
         <p
           className="text-white cursor-pointer"

@@ -92,12 +92,17 @@ const Home = () => {
 
     setIsLoading(true)
     const res = await getMyOutfit(InputData)
-    setOutfit(res)
-    setIsLoading(false)
+
+    if (res.status === 200) {
+      setOutfit(res.data)
+      setIsLoading(false)
+    } else {
+      setIsLoading(false)
+    }
   }
 
   return (
-    <div className="p-2 pt-12 w-screen h-screen md:min-h-screen md:h-full md:max-h-fit md:max-w-[1025px] flex flex-col self-center relative overflow-x-hidden ">
+    <div className="p-2 pt-12 pb-16 w-screen h-screen md:min-h-fit md:max-w-[1025px] flex flex-col self-center relative items-center">
       <div className="flex  w-full md:min-h-full">
         <div className=" w-full flex flex-col md:min-h-full md:justify-start md:items-center relative ">
           {weatherData ? (
@@ -111,7 +116,7 @@ const Home = () => {
             <Loading />
           )}
           {outfit ? (
-            <div className="flex justify-center ">
+            <div className="flex h-full justify-center items-start overflow-y-scroll">
               <Avartar data={outfit} />
             </div>
           ) : (
@@ -143,7 +148,7 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="flex w-full justify-center items-center absolute bottom-4 ">
+      <div className="flex w-full justify-center z-10 absolute bottom-4">
         <div className="w-1/2">
           {isLoading ? (
             <div className="flex justify-center">

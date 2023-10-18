@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { UserType } from '../typings/weather'
+import { PromptSelectType, UserType } from '../typings/weather'
 import CustomBtn from '../components/CustomBtn'
 import userImg from '../assets/gear_slot/head.png'
 import InputField from '../components/InputField'
-import { deleteAccount, updateAccount } from '../services'
+import { deleteAccount, updateAccount, updatePrompts } from '../services'
 import { useNavigate } from 'react-router-dom'
+import Select from 'react-select'
+import { genderOptions, sensitivityToCold } from '../constants/PromptOptions'
 
 type PropsType = {
   setToken: React.Dispatch<React.SetStateAction<string | undefined>>
@@ -14,8 +16,14 @@ const Profile = ({ setToken }: PropsType) => {
   const navigate = useNavigate()
   const [user, setUser] = useState<UserType>()
   const [isEdit, setIsEdit] = useState<boolean>(false)
+  const [isPromptEdit, setIsPromptEdit] = useState<boolean>(false)
   const [updateError, setUpdateError] = useState<boolean>(false)
   const [isDeleteAccount, setIsDeleteAccount] = useState<boolean>(false)
+  const [genderSelectedOption, setGenderSelectedOption] =
+    useState<PromptSelectType>(genderOptions[0])
+  const [sensitivityCold, setSensitivityCold] = useState<PromptSelectType>(
+    sensitivityToCold[0]
+  )
 
   useEffect(() => {
     const userExist = sessionStorage.getItem('warm_weather_user')
@@ -23,6 +31,21 @@ const Profile = ({ setToken }: PropsType) => {
       setUser(JSON.parse(userExist))
     }
   }, [])
+  useEffect(() => {
+    if (!user) return
+
+    const userCold = {
+      value: user.prompts.sensitivity_to_cold,
+      label: user.prompts.sensitivity_to_cold
+    }
+    setSensitivityCold(userCold)
+    const userGender = {
+      value: user.prompts.gender,
+      label: user.prompts.gender
+    }
+    setGenderSelectedOption(userGender)
+    sessionStorage.setItem('warm_weather_user', JSON.stringify(user))
+  }, [user])
 
   const handleEdit = (): void => setIsEdit((prev) => !prev)
 
@@ -67,6 +90,28 @@ const Profile = ({ setToken }: PropsType) => {
     }
   }
 
+  const handlePromptUpdate = async () => {
+    if (!user) return
+    const token = sessionStorage.getItem('warm_weather_token')
+
+    const updateData = {
+      User: user.id,
+      gender: genderSelectedOption.value,
+      sensitivity_to_cold: sensitivityCold.value
+    }
+    const headers = {
+      Accept: 'application/json',
+      Authorization: 'Token ' + token,
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+
+    const res = await updatePrompts(updateData, { headers })
+    if (res?.status === 200) {
+      setUser({ ...user, prompts: res.data })
+    }
+    setIsPromptEdit((prev) => !prev)
+  }
+
   const handleEditCancel = (): void => {
     handleEdit()
     const userExist = sessionStorage.getItem('warm_weather_user')
@@ -94,7 +139,7 @@ const Profile = ({ setToken }: PropsType) => {
       'Content-Type': 'application/json;charset=UTF-8'
     }
     if (userId) {
-      const res = await deleteAccount(userId, { headers })
+      await deleteAccount(userId, { headers })
     }
 
     setIsDeleteAccount((prev) => !prev)
@@ -107,7 +152,9 @@ const Profile = ({ setToken }: PropsType) => {
   }
 
   return (
-    <div className={`pt-10 px-4 `}>
+    <div
+      className={`pt-14 px-4 flex flex-col justify-between h-full md:min-h-screen border relative`}
+    >
       <div className={`${isDeleteAccount && 'blur-sm'}`}>
         <div className="flex flex-1 justify-start items-center">
           <div className="border-2 border-cyan-500 rounded-full">
@@ -124,9 +171,6 @@ const Profile = ({ setToken }: PropsType) => {
               </p>
             )}
           </div>
-          {/* <div className="flex">
-            <CustomBtn title="Follow" onClick={() => {}} />
-          </div> */}
         </div>
         <div className="mt-4 bg-slate-200 bg-opacity-50 rounded-md px-2 py-4">
           <div className="flex justify-between items-center">
@@ -163,7 +207,6 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="email">Email</label>
                 <InputField
-                  // placeholder="email"
                   name="email"
                   value={user?.email}
                   onChange={handleUpdateChange}
@@ -173,7 +216,6 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="first_name">First Name</label>
                 <InputField
-                  // placeholder="first name"
                   name="first_name"
                   value={user?.first_name}
                   onChange={handleUpdateChange}
@@ -183,7 +225,6 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="last_name">Last Name</label>
                 <InputField
-                  // placeholder="last_name"
                   name="last_name"
                   value={user?.last_name}
                   onChange={handleUpdateChange}
@@ -194,7 +235,6 @@ const Profile = ({ setToken }: PropsType) => {
               <div>
                 <label htmlFor="zip_code">Zip Code</label>
                 <InputField
-                  // placeholder="zip_code"
                   name="zip_code"
                   value={user?.zip_code}
                   onChange={handleUpdateChange}
@@ -204,35 +244,86 @@ const Profile = ({ setToken }: PropsType) => {
               <div className="flex gap-1">
                 {isEdit && (
                   <CustomBtn
-                    title="cancel"
+                    title="Cancel"
                     onClick={handleEditCancel}
                     bgColor="bg-red-700"
                   />
                 )}
-                <CustomBtn title={'save'} onClick={handleAccountUpdate} />
+                <CustomBtn title={'Update'} onClick={handleAccountUpdate} />
               </div>
             </div>
           )}
         </div>
         <div className="mt-4 bg-slate-200 bg-opacity-50 rounded-md px-2 py-4">
-          <p>Promp keywords</p>
-          <div>
-            <p>Gender: {user?.prompts.gender}</p>
-            <p>On 72°F: {user?.prompts.sensitivity_to_cold}</p>
+          {!isPromptEdit ? (
+            <>
+              <div className="flex justify-between items-center">
+                <p>Prompt keywords</p>
+                <div>
+                  <CustomBtn
+                    title="edit"
+                    onClick={() => {
+                      setIsPromptEdit((prev) => !prev)
+                    }}
+                  />
+                </div>
+              </div>
+              <div>
+                <p>Gender: {user?.prompts.gender}</p>
+                <p>On 72°F: {user?.prompts.sensitivity_to_cold}</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <p>On a sunny 72˚ day, how do you normally feel?</p>
+                <label htmlFor="Gender">Zip Code</label>
+                <Select
+                  options={genderOptions}
+                  value={genderSelectedOption}
+                  onChange={(e) => {
+                    if (e) {
+                      setGenderSelectedOption(e)
+                    }
+                  }}
+                />
+                <label>Sensitivity to cold</label>
+                <Select
+                  options={sensitivityToCold}
+                  value={sensitivityCold}
+                  onChange={(e) => {
+                    if (e) {
+                      setSensitivityCold(e)
+                    }
+                  }}
+                />
+                <div className="flex gap-1">
+                  {isPromptEdit && (
+                    <CustomBtn
+                      title="Cancel"
+                      onClick={() => setIsPromptEdit((prev) => !prev)}
+                      bgColor="bg-red-700"
+                    />
+                  )}
+                  <CustomBtn title={'Update'} onClick={handlePromptUpdate} />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {!isEdit && !isPromptEdit && (
+        <div className="flex w-full relative bottom-4 justify-center">
+          <div className="w-1/2">
+            <CustomBtn
+              title="Log out"
+              bgColor="bg-red-600"
+              onClick={handleLogout}
+            />
           </div>
         </div>
-        {!isEdit && (
-          <div className="flex w-screen absolute bottom-2 justify-center">
-            <div className="w-1/2">
-              <CustomBtn
-                title="Log out"
-                bgColor="bg-red-600"
-                onClick={handleLogout}
-              />
-            </div>
-          </div>
-        )}
-      </div>
+      )}
 
       {/* Modal delete account */}
       {isDeleteAccount && (

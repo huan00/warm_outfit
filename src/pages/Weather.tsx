@@ -22,13 +22,13 @@ const Weather = ({ data }: props) => {
           />
 
           <WeatherIcon
-            imgUrl={temp_high}
-            text={`${data.forecast.forecastday[0]?.day.maxtemp_f} °F`}
+            imgUrl={feeslike}
+            text={`${data.current.feelslike_f} °F`}
           />
 
           <WeatherIcon
-            imgUrl={feeslike}
-            text={`${data.current.feelslike_f} °F`}
+            imgUrl={temp_high}
+            text={`${data.forecast.forecastday[0]?.day.maxtemp_f} °F`}
           />
 
           <WeatherIcon imgUrl={humidity} text={`${data.current.humidity} %`} />

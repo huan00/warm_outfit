@@ -136,6 +136,12 @@ export interface PromptType {
   sensitivityToCold: string
 }
 
+export interface UpdatePromptType {
+  gender: string
+  sensitivity_to_cold: string
+  User: number | undefined
+}
+
 export interface ResType {
   token?: string
   data?: {

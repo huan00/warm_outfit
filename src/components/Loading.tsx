@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Loading = () => {
   return (
     <div className="loading_screen w-8 h-8 flex justify-center align-middle">

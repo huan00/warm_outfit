@@ -1,6 +1,5 @@
 import React from 'react'
 import { PromptType, RegisterType, ResType } from '../../typings/weather'
-import InputField from '../../components/InputField'
 import RadioInput from '../../components/RadioInput'
 import CustomBtn from '../../components/CustomBtn'
 import { useNavigate } from 'react-router-dom'

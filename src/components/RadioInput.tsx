@@ -1,5 +1,3 @@
-import React from 'react'
-
 type PropsType = {
   title: string
   radio: boolean

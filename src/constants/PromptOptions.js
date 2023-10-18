@@ -1,6 +1,7 @@
 export const genderOptions = [
   { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' }
+  { value: 'female', label: 'Female' },
+  { value: 'Other', label: 'Other' }
 ]
 export const sensitivityToCold = [
   {

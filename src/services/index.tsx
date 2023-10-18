@@ -1,10 +1,10 @@
 import axios from 'axios'
 import {
-  OutfitResponse,
   RegisterType,
   LoginType,
   UserType,
-  PromptType
+  PromptType,
+  UpdatePromptType
 } from '../typings/weather'
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
@@ -39,7 +39,7 @@ export const getMyOutfit = async (weather: {
     weather
   )
 
-  return res.data as OutfitResponse
+  return res
 }
 
 export const createUserAccount = async (
@@ -84,6 +84,18 @@ export const updateAccount = async (
 export const deleteAccount = async (pk: number, headers: object) => {
   try {
     const res = await axios.delete(`${BASEURL}/user/delete/${pk}`, headers)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updatePrompts = async (
+  data: UpdatePromptType,
+  headers: object
+) => {
+  try {
+    const res = await axios.put(`${BASEURL}/prompts/prompts`, data, headers)
     return res
   } catch (error) {
     console.log(error)

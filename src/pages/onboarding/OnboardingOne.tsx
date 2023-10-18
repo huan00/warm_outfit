@@ -1,7 +1,7 @@
 import userIcon from '../../assets/user_icon.png'
 import { useNavigate } from 'react-router-dom'
 import { RegisterType } from '../../typings/weather'
-import { createUserAccount } from '../../services'
+
 import InputField from '../../components/InputField'
 import CustomBtn from '../../components/CustomBtn'
 import { useState } from 'react'
@@ -167,21 +167,6 @@ const OnboardingOne = ({
         </div>
 
         <div className="w-3/4 bottom-6 sm:relative flex flex-col items-center">
-          {/* {resError && (
-            <>
-              <p className="w-full mb-2 px-2 bg-red-600 rounded text-white">
-                Status: {resError.status} - {resError.statusText}
-              </p>
-              {resError.data &&
-                Object.keys(resError.data).map((key) => (
-                  <p className="w-full mb-2 px-2 bg-red-600 rounded text-white">
-                    {resError.data &&
-                      resError.data[key as keyof typeof resError.data]}
-                  </p>
-                ))}
-            </>
-          )} */}
-          {/* <CustomBtn title="Register" onClick={() => handleRegister(data)} /> */}
           <div className="w-full md:w-1/2">
             <CustomBtn
               title="Next"

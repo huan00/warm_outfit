@@ -1,10 +1,6 @@
-import InputField from '../components/InputField'
-import userIcon from '../assets/user_icon.png'
-import CustomBtn from '../components/CustomBtn'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PromptType, RegisterType, ResType } from '../typings/weather'
 import { createUserAccount } from '../services'
-import { useNavigate } from 'react-router-dom'
 import OnboardingOne from './onboarding/OnboardingOne'
 import OnboardingTwo from './onboarding/OnboardingTwo'
 import OnboardingThree from './onboarding/OnboardingThree'
@@ -23,7 +19,6 @@ type ErrorType = {
 }
 
 const Register = () => {
-  const navigate = useNavigate()
   const [page, setPage] = useState<string>('one')
   const [data, setData] = useState<RegisterType>({
     email: '',
@@ -72,8 +67,6 @@ const Register = () => {
       setResError(res)
     }
   }
-
-  // const navigateToRegister = (): void => navigate('/login')
 
   const renderPage = () => {
     switch (page) {

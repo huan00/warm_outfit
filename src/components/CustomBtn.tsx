@@ -1,5 +1,3 @@
-import React from 'react'
-
 type props = {
   onClick: () => void
   title: string

@@ -1,6 +1,6 @@
 import React from 'react'
 import { PromptType, RegisterType } from '../../typings/weather'
-import InputField from '../../components/InputField'
+
 import RadioInput from '../../components/RadioInput'
 import CustomBtn from '../../components/CustomBtn'
 
