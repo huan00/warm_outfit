@@ -23,6 +23,7 @@ export const getWeather = async (location: {
   latitude: number
   longitude: number
 }) => {
+  console.log(WEATHER_API_KEY)
   const res = await axios.get(
     `http://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${location.latitude},${location.longitude}&day=3`
   )
