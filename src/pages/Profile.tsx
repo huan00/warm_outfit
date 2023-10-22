@@ -35,13 +35,13 @@ const Profile = ({ setToken }: PropsType) => {
     if (!user) return
 
     const userCold = {
-      value: user.prompts.sensitivity_to_cold,
-      label: user.prompts.sensitivity_to_cold
+      value: user.prompt.sensitivity_to_cold,
+      label: user.prompt.sensitivity_to_cold
     }
     setSensitivityCold(userCold)
     const userGender = {
-      value: user.prompts.gender,
-      label: user.prompts.gender
+      value: user.prompt.gender,
+      label: user.prompt.gender
     }
     setGenderSelectedOption(userGender)
     sessionStorage.setItem('warm_weather_user', JSON.stringify(user))
@@ -107,7 +107,7 @@ const Profile = ({ setToken }: PropsType) => {
 
     const res = await updatePrompts(updateData, { headers })
     if (res?.status === 200) {
-      setUser({ ...user, prompts: res.data })
+      setUser({ ...user, prompt: res.data })
     }
     setIsPromptEdit((prev) => !prev)
   }
@@ -269,8 +269,8 @@ const Profile = ({ setToken }: PropsType) => {
                 </div>
               </div>
               <div>
-                <p>Gender: {user?.prompts.gender}</p>
-                <p>On 72°F: {user?.prompts.sensitivity_to_cold}</p>
+                <p>Gender: {user?.prompt.gender}</p>
+                <p>On 72°F: {user?.prompt.sensitivity_to_cold}</p>
               </div>
             </>
           ) : (

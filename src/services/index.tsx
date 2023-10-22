@@ -9,6 +9,8 @@ import {
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 const BASEURL = `http://localhost:8000/warm-weather`
+// const BASEURL = `https://warmweather-backend.onrender.com/warm-weather`
+// const BASEURL = `https://warmweatherbackend-production.up.railway.app/warm-weather`
 
 type ResType = {
   token?: string
@@ -34,10 +36,7 @@ export const getMyOutfit = async (weather: {
   humidity: string
   condition: string
 }) => {
-  const res = await axios.post(
-    `http://localhost:8000/warm-weather/user/getmyoutfit`,
-    weather
-  )
+  const res = await axios.post(`${BASEURL}/user/getmyoutfit`, weather)
 
   return res
 }
@@ -95,7 +94,7 @@ export const updatePrompts = async (
   headers: object
 ) => {
   try {
-    const res = await axios.put(`${BASEURL}/prompts/prompts`, data, headers)
+    const res = await axios.put(`${BASEURL}/prompt/prompt`, data, headers)
     return res
   } catch (error) {
     console.log(error)

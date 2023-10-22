@@ -43,7 +43,7 @@ const Login = ({ setToken }: PropsType) => {
     }
   }
   const navigateToRegister = (): void => navigate('/register')
-  console.log(loginError)
+
   return (
     <div className="w-3/4 md:w-1/4 h-screen flex flex-col justify-center self-center">
       <InputField

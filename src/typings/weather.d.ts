@@ -93,6 +93,7 @@ export type OutfitResponse = {
   pants: string[]
   shoe: string[]
   accessory: string[]
+  extras: string[]
 }
 
 export interface LoginType {
@@ -158,7 +159,7 @@ export interface UserType {
   first_name: string
   last_name: string
   zip_code: string
-  prompts: {
+  prompt: {
     gender: string
     sensitivity_to_cold: string
   }

@@ -10,6 +10,7 @@ import { default as jacket } from './jacket.png'
 import { default as pants } from './pants.png'
 import { default as shoes } from './shoes.png'
 import { default as accessory } from './accessory.png'
+import { default as extras } from './extras.png'
 
 interface STOCKTYPE {
   [key: string]: string
@@ -21,5 +22,6 @@ export const STOCKIMG: STOCKTYPE = {
   jacket: jacket,
   pants: pants,
   footware: shoes,
-  accessory
+  accessory,
+  extras
 }
