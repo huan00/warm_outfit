@@ -8,9 +8,9 @@ import {
 } from '../typings/weather'
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-const BASEURL = `http://localhost:8000/warm-weather`
+// const BASEURL = `http://localhost:8000/warm-weather`
 // const BASEURL = `https://warmweather-backend.onrender.com/warm-weather`
-// const BASEURL = `https://warmweatherbackend-production.up.railway.app/warm-weather`
+const BASEURL = `https://warmweatherbackend-production.up.railway.app/warm-weather`
 
 type ResType = {
   token?: string
