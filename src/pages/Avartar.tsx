@@ -6,15 +6,14 @@ type props = {
 }
 
 const Avartar = ({ data }: props) => {
-  console.log(data)
   return (
-    <div className="flex flex-col justify-start md:w-full">
-      <div>
+    <div className=" flex h-full flex-col relative justify-start md:w-full overflow-y-scroll no-scrollbar">
+      <div className="">
         <p className="text-white w-full text-md bg-slate-500 bg-opacity-50 rounded p-2 my-2 whitespace-pre-wrap">
           {data?.suggestion}
         </p>
       </div>
-      <div className="w-full h-fit flex flex-col text-white">
+      <div className="w-full flex flex-col text-white">
         <div className="flex gap-2 mb-2">
           <GearSlot category="Head" data={data?.head} />
           <GearSlot category="Accessory" data={data?.accessory} />

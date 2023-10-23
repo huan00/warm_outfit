@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div
-      className="App flex flex-col md:justify-start w-screen h-screen md:min-h-fit md:h-full md:max-h-fit
+      className="App flex flex-col md:justify-start w-screen min-h-screen
     bg-cover bg-no-repeat"
       style={{
         // background: 'rgb(238,174,202)',

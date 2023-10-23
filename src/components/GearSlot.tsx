@@ -30,7 +30,7 @@ const GearSlot = ({
           {categories ? categories : category}
         </p>
         <div className="w-full px-2 flex justify-between relative top-[40%] -translate-y-2/3 z-10">
-          <div className="flex flex-col w-full mt-2 text-clip ">
+          <div className="flex flex-col w-full mt-2 text-clip items-center ">
             {Array.isArray(data) ? (
               data?.map((item) => (
                 <p

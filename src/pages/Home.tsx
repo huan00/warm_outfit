@@ -38,6 +38,17 @@ const Home = () => {
   }>()
   const [weatherData, setWeatherData] = useState<WeatherResponse>()
   const [outfit, setOutfit] = useState<OutfitResponse | undefined>()
+  // const [outfit, setOutfit] = useState<OutfitResponse | undefined>({
+  //   head: [],
+  //   tops: ['Long-sleeved thermal shirt', 'Lightweight sweater'],
+  //   jacket: ['winter coat'],
+  //   pants: ['Slim-fit jeans'],
+  //   shoe: ['Casual leather boots'],
+  //   accessory: ['Sunglasses'],
+  //   suggestion:
+  //     'Layer up with a long-sleeved thermal shirt and a lightweight sweater paired with slim-fit jeans and casual leather boots.',
+  //   extras: ['Sunblock']
+  // })
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
@@ -92,7 +103,7 @@ const Home = () => {
 
     setIsLoading(true)
     const res = await getMyOutfit(InputData)
-    console.log(res.data)
+
     if (res.status === 200) {
       setOutfit(res.data)
       setIsLoading(false)
@@ -101,39 +112,41 @@ const Home = () => {
     }
   }
 
-  const fakedata: OutfitResponse = {
-    head: [],
-    tops: ['Long-sleeved thermal shirt', 'Lightweight sweater'],
-    jacket: ['winter coat'],
-    pants: ['Slim-fit jeans'],
-    shoe: ['Casual leather boots'],
-    accessory: ['Sunglasses'],
-    suggestion:
-      'Layer up with a long-sleeved thermal shirt and a lightweight sweater paired with slim-fit jeans and casual leather boots.',
-    extras: ['Sunblock']
-  }
+  // const fakedata: OutfitResponse = {
+  //   head: [],
+  //   tops: ['Long-sleeved thermal shirt', 'Lightweight sweater'],
+  //   jacket: ['winter coat'],
+  //   pants: ['Slim-fit jeans'],
+  //   shoe: ['Casual leather boots'],
+  //   accessory: ['Sunglasses'],
+  //   suggestion:
+  //     'Layer up with a long-sleeved thermal shirt and a lightweight sweater paired with slim-fit jeans and casual leather boots.',
+  //   extras: ['Sunblock']
+  // }
 
   return (
-    <div className="p-2 pt-12 pb-16 w-screen h-screen md:min-h-screen overflow-y-scroll md:max-w-[769px] flex flex-col self-center relative items-center">
-      <div className="flex  w-full md:min-h-full">
-        <div className=" w-full flex flex-col md:min-h-full md:justify-start md:items-center relative ">
+    <div className="p-2 pt-12 w-screen h-screen justify-between sm:min-h-screen overflow-y-scroll sm:max-w-[769px] flex flex-col self-center relative items-center">
+      <div className="flex w-full h-[90%] sm:min-h-full  ">
+        <div className=" w-full h-full flex flex-col sm:min-h-full sm:justify-start sm:items-center relative  ">
           {weatherData ? (
-            <div className="flex flex-col md:h-fit">
-              <p className="text-white text-xl md:text-2xl">
+            <div className="flex flex-col sm:h-fit sticky top-0">
+              <p className="text-white text-xl sm:text-2xl">
                 Today's weather condition:
               </p>
               <Weather data={weatherData} />
+              {/* </div> */}
             </div>
           ) : (
             <Loading />
           )}
           {outfit ? (
-            <div className="flex h-full justify-center items-start overflow-y-scroll">
-              {/* <Avartar data={outfit} /> */}
-              <Avartar data={fakedata} />
+            <div className="flex h-full justify-center items-start  overflow-y-scroll">
+              <Avartar data={outfit} />
+
+              {/* <Avartar data={fakedata} /> */}
             </div>
           ) : (
-            <div className="w-full h-full flex flex-col justify-between md:h-4/6 ">
+            <div className="w-full h-fit flex flex-col justify-between sm:h-4/6 ">
               <div>
                 <p>Fill out the below info for an outfit</p>
                 <label>Gender</label>
@@ -161,7 +174,7 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="flex w-full justify-center z-10 relative -bottom-4">
+      <div className="flex w-full justify-center z-10 relative bottom-2">
         <div className="w-1/2">
           {isLoading ? (
             <div className="flex justify-center">
