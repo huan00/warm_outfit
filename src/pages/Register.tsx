@@ -107,7 +107,11 @@ const Register = () => {
     }
   }
 
-  return <div className="h-full">{renderPage()}</div>
+  return (
+    <div className="flex justify-center sm:w-1/2 h-screen pt-12  self-center">
+      {renderPage()}
+    </div>
+  )
 }
 
 export default Register

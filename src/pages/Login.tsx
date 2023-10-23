@@ -45,7 +45,7 @@ const Login = ({ setToken }: PropsType) => {
   const navigateToRegister = (): void => navigate('/register')
 
   return (
-    <div className="w-3/4 md:w-1/4 h-screen flex flex-col justify-center self-center">
+    <div className="w-3/4 sm:w-1/2 h-screen flex flex-col justify-center self-center">
       <InputField
         placeholder="Username"
         name="username"

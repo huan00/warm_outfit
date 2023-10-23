@@ -153,7 +153,7 @@ const Profile = ({ setToken }: PropsType) => {
 
   return (
     <div
-      className={`pt-14 px-4 flex flex-col justify-between h-full md:min-h-screen border relative`}
+      className={`pt-14 px-4 flex flex-col justify-between h-screen md:min-h-screen relative`}
     >
       <div className={`${isDeleteAccount && 'blur-sm'}`}>
         <div className="flex flex-1 justify-start items-center">
@@ -241,7 +241,7 @@ const Profile = ({ setToken }: PropsType) => {
                   errorColor={false}
                 />
               </div>
-              <div className="flex gap-1">
+              <div className="flex gap-1 mt-4">
                 {isEdit && (
                   <CustomBtn
                     title="Cancel"
@@ -297,7 +297,7 @@ const Profile = ({ setToken }: PropsType) => {
                     }
                   }}
                 />
-                <div className="flex gap-1">
+                <div className="flex gap-1 mt-4">
                   {isPromptEdit && (
                     <CustomBtn
                       title="Cancel"

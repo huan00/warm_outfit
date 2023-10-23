@@ -89,14 +89,14 @@ const OnboardingOne = ({
   return (
     <div
       className="flex h-full items-center relative
-    md:h-full md:max-w-[1280px] md:justify-center md:self-center"
+    sm:h-full sm:w-full sm:justify-center sm:self-center"
     >
       <div className="flex flex-col w-full h-full flex-1 justify-between items-center relative py-4">
         <div className="flex flex-col w-full justify-evenly items-center">
           <img src={userIcon} alt="user icon" className="w-1/4 mb-2" />
         </div>
 
-        <div className="w-11/12 md:w-1/2">
+        <div className="w-11/12 sm:w-full">
           <InputField
             onChange={handleInputField}
             name="email"
@@ -167,7 +167,7 @@ const OnboardingOne = ({
         </div>
 
         <div className="w-3/4 bottom-6 sm:relative flex flex-col items-center">
-          <div className="w-full md:w-1/2">
+          <div className="w-full sm:w-1/2">
             <CustomBtn
               title="Next"
               onClick={handleNext}
