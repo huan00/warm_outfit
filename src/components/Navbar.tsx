@@ -35,11 +35,11 @@ const Navbar = ({ token, setToken }: PropsType) => {
           className="w-8 h-8 ml-4 cursor-pointer"
           onClick={handleUserClick}
         />
-        <img
+        {/* <img
           src={menu_dots}
           alt="user icon"
           className="w-8 h-8 ml-4 cursor-pointer"
-        />
+        /> */}
       </div>
     </div>
   )
