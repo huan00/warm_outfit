@@ -159,7 +159,7 @@ const Home = () => {
                     }
                   }}
                 />
-                <label>Sensitivity to cold</label>
+                <label>On a sunny 72˚ day, how do you normally feel?</label>
                 <Select
                   options={sensitivityToCold}
                   value={sensitivityCold}
