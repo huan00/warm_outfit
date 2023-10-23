@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getWeather, getMyOutfit } from '../services'
+import { getWeather, getMyOutfit, getZipCodeWeather } from '../services'
 import Loading from '../components/Loading'
 import Select from 'react-select'
 
@@ -15,6 +15,9 @@ import CustomBtn from '../components/CustomBtn'
 import { genderOptions, sensitivityToCold } from '../constants/PromptOptions'
 
 const Home = () => {
+  const [hasLocationPermission, setHasLocationPermission] = useState(false)
+  // const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(false)
+
   const userExist = sessionStorage.getItem('warm_weather_user')
   const user: UserType = userExist ? JSON.parse(userExist) : undefined
 
@@ -50,6 +53,21 @@ const Home = () => {
   //   extras: ['Sunblock']
   // })
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const checkLocationPermission = () => {
+    navigator.permissions.query({ name: 'geolocation' }).then((permission) => {
+      setHasLocationPermission(permission.state === 'granted')
+    })
+  }
+  // const askGeolocationPermission = () => {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       setIsGeolocationEnabled(true)
+  //     },
+  //     (error) => {
+  //       // Handle error
+  //     }
+  //   )
+  // }
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -67,16 +85,24 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
+    checkLocationPermission()
     if (location) {
       getWeatherData(location)
+    } else if (user?.zip_code) {
+      getZipCodeWeatherData(parseInt(user?.zip_code))
     }
-  }, [location])
+  }, [location, user?.zip_code])
 
   const getWeatherData = async (location: {
     latitude: number
     longitude: number
   }) => {
     const res = await getWeather(location)
+    setWeatherData(res)
+  }
+
+  const getZipCodeWeatherData = async (zipcode: number) => {
+    const res = await getZipCodeWeather(zipcode)
     setWeatherData(res)
   }
 
@@ -134,7 +160,6 @@ const Home = () => {
                 Today's weather condition:
               </p>
               <Weather data={weatherData} />
-              {/* </div> */}
             </div>
           ) : (
             <Loading />
@@ -148,7 +173,14 @@ const Home = () => {
           ) : (
             <div className="w-full h-fit flex flex-col justify-between sm:h-full">
               <div>
-                <p>Fill out the below info for an outfit</p>
+                {user ? (
+                  <p>User preset conditions:</p>
+                ) : (
+                  <>
+                    <p>Fill out the below info for an outfit.</p>
+                    <p>Create an account to save selection:</p>
+                  </>
+                )}
                 <label>Gender</label>
                 <Select
                   options={genderOptions}
