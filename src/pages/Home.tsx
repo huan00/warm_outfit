@@ -125,9 +125,9 @@ const Home = () => {
   // }
 
   return (
-    <div className="p-2 pt-12 w-screen h-screen justify-between sm:min-h-screen overflow-y-scroll sm:max-w-[769px] flex flex-col self-center relative items-center">
-      <div className="flex w-full h-[90%] sm:min-h-full  ">
-        <div className=" w-full h-full flex flex-col sm:min-h-full sm:justify-start sm:items-center relative  ">
+    <div className="p-2 pt-12 w-screen h-screen justify-between sm:min-h-full sm:max-w-[769px] flex flex-col self-center relative items-center ">
+      <div className="flex w-full h-[90%]  ">
+        <div className=" w-full h-full flex flex-col sm:h-full sm:justify-start sm:items-center relative ">
           {weatherData ? (
             <div className="flex flex-col sm:h-fit sticky top-0">
               <p className="text-white text-xl sm:text-2xl">
@@ -146,7 +146,7 @@ const Home = () => {
               {/* <Avartar data={fakedata} /> */}
             </div>
           ) : (
-            <div className="w-full h-fit flex flex-col justify-between sm:h-4/6 ">
+            <div className="w-full h-fit flex flex-col justify-between sm:h-full">
               <div>
                 <p>Fill out the below info for an outfit</p>
                 <label>Gender</label>

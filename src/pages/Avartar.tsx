@@ -7,7 +7,7 @@ type props = {
 
 const Avartar = ({ data }: props) => {
   return (
-    <div className=" flex h-full flex-col relative justify-start md:w-full overflow-y-scroll no-scrollbar">
+    <div className=" flex h-full flex-col relative justify-start md:w-full rounded-md overflow-y-scroll no-scrollbar">
       <div className="">
         <p className="text-white w-full text-md bg-slate-500 bg-opacity-50 rounded p-2 my-2 whitespace-pre-wrap">
           {data?.suggestion}
