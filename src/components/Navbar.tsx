@@ -1,4 +1,4 @@
-// import { menu_dots, user_icon } from '../assets'
+import { user_icon } from '../assets'
 import { useNavigate } from 'react-router-dom'
 
 type PropsType = {
