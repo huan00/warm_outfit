@@ -15,7 +15,7 @@ import CustomBtn from '../components/CustomBtn'
 import { genderOptions, sensitivityToCold } from '../constants/PromptOptions'
 
 const Home = () => {
-  const [hasLocationPermission, setHasLocationPermission] = useState(false)
+  // const [hasLocationPermission, setHasLocationPermission] = useState(false)
   // const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(false)
 
   const userExist = sessionStorage.getItem('warm_weather_user')
@@ -53,11 +53,11 @@ const Home = () => {
   //   extras: ['Sunblock']
   // })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const checkLocationPermission = () => {
-    navigator.permissions.query({ name: 'geolocation' }).then((permission) => {
-      setHasLocationPermission(permission.state === 'granted')
-    })
-  }
+  // const checkLocationPermission = () => {
+  //   navigator.permissions.query({ name: 'geolocation' }).then((permission) => {
+  //     setHasLocationPermission(permission.state === 'granted')
+  //   })
+  // }
   // const askGeolocationPermission = () => {
   //   navigator.geolocation.getCurrentPosition(
   //     (position) => {
@@ -85,7 +85,6 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    checkLocationPermission()
     if (location) {
       getWeatherData(location)
     } else if (user?.zip_code) {
