@@ -15,9 +15,6 @@ import CustomBtn from '../components/CustomBtn'
 import { genderOptions, sensitivityToCold } from '../constants/PromptOptions'
 
 const Home = () => {
-  // const [hasLocationPermission, setHasLocationPermission] = useState(false)
-  // const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(false)
-
   const userExist = sessionStorage.getItem('warm_weather_user')
   const user: UserType = userExist ? JSON.parse(userExist) : undefined
 
@@ -41,33 +38,8 @@ const Home = () => {
   }>()
   const [weatherData, setWeatherData] = useState<WeatherResponse>()
   const [outfit, setOutfit] = useState<OutfitResponse | undefined>()
-  // const [outfit, setOutfit] = useState<OutfitResponse | undefined>({
-  //   head: [],
-  //   tops: ['Long-sleeved thermal shirt', 'Lightweight sweater'],
-  //   jacket: ['winter coat'],
-  //   pants: ['Slim-fit jeans'],
-  //   shoe: ['Casual leather boots'],
-  //   accessory: ['Sunglasses'],
-  //   suggestion:
-  //     'Layer up with a long-sleeved thermal shirt and a lightweight sweater paired with slim-fit jeans and casual leather boots.',
-  //   extras: ['Sunblock']
-  // })
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  // const checkLocationPermission = () => {
-  //   navigator.permissions.query({ name: 'geolocation' }).then((permission) => {
-  //     setHasLocationPermission(permission.state === 'granted')
-  //   })
-  // }
-  // const askGeolocationPermission = () => {
-  //   navigator.geolocation.getCurrentPosition(
-  //     (position) => {
-  //       setIsGeolocationEnabled(true)
-  //     },
-  //     (error) => {
-  //       // Handle error
-  //     }
-  //   )
-  // }
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -137,18 +109,6 @@ const Home = () => {
     }
   }
 
-  // const fakedata: OutfitResponse = {
-  //   head: [],
-  //   tops: ['Long-sleeved thermal shirt', 'Lightweight sweater'],
-  //   jacket: ['winter coat'],
-  //   pants: ['Slim-fit jeans'],
-  //   shoe: ['Casual leather boots'],
-  //   accessory: ['Sunglasses'],
-  //   suggestion:
-  //     'Layer up with a long-sleeved thermal shirt and a lightweight sweater paired with slim-fit jeans and casual leather boots.',
-  //   extras: ['Sunblock']
-  // }
-
   return (
     <div className="p-2 pt-12 w-screen h-screen justify-between sm:min-h-full sm:max-w-[769px] flex flex-col self-center relative items-center ">
       <div className="flex w-full h-[90%]  ">
@@ -166,8 +126,6 @@ const Home = () => {
           {outfit ? (
             <div className="flex h-full justify-center items-start  overflow-y-scroll">
               <Avartar data={outfit} />
-
-              {/* <Avartar data={fakedata} /> */}
             </div>
           ) : (
             <div className="w-full h-fit flex flex-col justify-between sm:h-full">
