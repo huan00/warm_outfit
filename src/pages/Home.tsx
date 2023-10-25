@@ -110,7 +110,7 @@ const Home = () => {
   }
 
   return (
-    <div className="p-2 pt-12 w-screen h-screen justify-between sm:min-h-full sm:max-w-[769px] flex flex-col self-center relative items-center ">
+    <div className="p-2 pt-12 font-sans w-screen h-screen justify-between sm:min-h-full sm:max-w-[769px] flex flex-col self-center relative items-center ">
       <div className="flex w-full h-[90%]  ">
         <div className=" w-full h-full flex flex-col sm:h-full sm:justify-start sm:items-center relative ">
           {weatherData ? (
@@ -129,7 +129,7 @@ const Home = () => {
             </div>
           ) : (
             <div className="w-full h-fit flex flex-col justify-between sm:h-full">
-              <div>
+              <div className="text-white">
                 {user ? (
                   <p>User preset conditions:</p>
                 ) : (
@@ -138,7 +138,7 @@ const Home = () => {
                     <p>Create an account to save selection:</p>
                   </>
                 )}
-                <label>Gender</label>
+                <label className="text-white">Gender</label>
                 <Select
                   options={genderOptions}
                   value={genderSelectedOption}
@@ -148,7 +148,9 @@ const Home = () => {
                     }
                   }}
                 />
-                <label>On a sunny 72˚ day, how do you normally feel?</label>
+                <label className="text-white">
+                  On a sunny 72˚ day, how do you normally feel?
+                </label>
                 <Select
                   options={sensitivityToCold}
                   value={sensitivityCold}

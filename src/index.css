@@ -35,7 +35,7 @@ code {
 
 
 .App {
-  background: linear-gradient(50deg, rgba(130,206,141,1) 0%, rgba(29,153,204,1) 57%, rgba(169,185,252,1) 100%);
+  /* background: linear-gradient(145deg, rgba(252,252,251,1) 0%, rgba(21,5,73,1) 47%, rgba(237,23,242,1) 100%); */
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 	/* height: 100vh; */

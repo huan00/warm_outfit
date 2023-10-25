@@ -27,12 +27,18 @@ const Avartar = ({ data }: props) => {
                 data={data?.tops}
                 dataTwo={data?.jacket}
                 bgActive={true}
+                fullWidth={true}
               />
             </div>
           ) : (
-            <div className="flex w-full justify-center">
-              <div className="">
-                <GearSlot category="Tops" data={data?.tops} bgActive={true} />
+            <div className="flex w-full justify-center aspect-[2/1]">
+              <div className="w-full">
+                <GearSlot
+                  category="Tops"
+                  data={data?.tops}
+                  bgActive={true}
+                  fullWidth={true}
+                />
               </div>
             </div>
           )}

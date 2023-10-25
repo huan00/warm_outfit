@@ -14,10 +14,23 @@ function App() {
     setToken(tokenExist ? tokenExist : undefined)
   }, [token])
 
+  const getCurrentTime = (): number => {
+    const now = new Date()
+    const offset = now.getTimezoneOffset()
+    const localTime = new Date(now.getTime() + offset * 60 * 100)
+    const hour = localTime.getHours()
+    return hour
+  }
   return (
     <div
-      className="App flex flex-col md:justify-start w-screen min-h-screen
-    bg-cover bg-no-repeat"
+      className={`App flex flex-col md:justify-start w-screen min-h-screen
+    bg-cover bg-no-repeat ${
+      getCurrentTime() < 12
+        ? 'bg-morning'
+        : getCurrentTime() > 12 && getCurrentTime() < 18
+        ? 'bg-noon'
+        : 'bg-night'
+    } `}
     >
       {/* bg-image-hero  */}
       <Navbar token={token} setToken={setToken} />

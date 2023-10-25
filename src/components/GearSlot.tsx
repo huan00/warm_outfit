@@ -6,6 +6,7 @@ type props = {
   data: string[] | undefined
   dataTwo?: string[] | undefined
   bgActive?: boolean
+  fullWidth?: boolean
 }
 
 const GearSlot = ({
@@ -13,37 +14,49 @@ const GearSlot = ({
   data,
   bgActive = false,
   categories,
-  dataTwo
+  dataTwo,
+  fullWidth
 }: props) => {
-  const displayStock = (category: string) => {
+  const displayStock = (category: string): string => {
     return STOCKIMG[category.toLowerCase()]
+  }
+
+  const capFirstChar = (item: string): string => {
+    if (!item) {
+      return item
+    }
+    return item[0].toUpperCase() + item.substring(1)
   }
 
   return (
     <div
       className={`flex flex-col justify-start items-center w-full h-full aspect-square rounded-3xl relative ${
-        bgActive ? '' : 'bg-slate-700 bg-opacity-30'
+        bgActive ? '' : 'bg-slate-700 bg-opacity-70'
       } overflow-hidden `}
     >
       <div className="w-full flex flex-col items-center justify-center mt-3 relative">
-        <p className="flex text-slate-200 z-10 font-semibold">
+        <p className="flex text-xs font-normal text-slate-200 z-10 opacity-50">
           {categories ? categories : category}
         </p>
         <div className="w-full px-2 flex justify-between relative top-[40%] -translate-y-2/3 z-10">
-          <div className="flex flex-col w-full mt-2 text-clip items-center ">
+          <div
+            className={`flex flex-col w-full text-clip items-center ${
+              fullWidth ? 'mt-4' : 'mt-2'
+            }`}
+          >
             {Array.isArray(data) ? (
               data.length > 0 ? (
                 data?.map((item) => (
                   <p
-                    className="text-center text-xs md:text-base font-bold z-10"
+                    className="text-center text-xl font-normal md:text-base z-10"
                     key={item}
                   >
-                    -{item}
+                    {capFirstChar(item)}
                   </p>
                 ))
               ) : (
                 <p className="text-center text-xs md:text-base font-bold z-10">
-                  -{`No ${category} required`}
+                  {`No ${category} required`}
                 </p>
               )
             ) : (
