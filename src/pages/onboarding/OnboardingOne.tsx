@@ -89,7 +89,7 @@ const OnboardingOne = ({
   return (
     <div
       className="flex h-full items-center relative
-    sm:h-full sm:w-full sm:justify-center sm:self-center"
+    sm:h-full sm:w-full sm:justify-center sm:self-center text-white"
     >
       <div className="flex flex-col w-full h-full flex-1 justify-between items-center relative py-4">
         <div className="flex flex-col w-full justify-evenly items-center">

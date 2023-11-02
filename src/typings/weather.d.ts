@@ -164,3 +164,12 @@ export interface UserType {
     sensitivity_to_cold: string
   }
 }
+
+// export interface AxiosResponse<T = any> {
+//   config:
+//   status: number
+//   statusText: string
+//   data?: T
+//   headers:
+//   error:
+// }

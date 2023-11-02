@@ -19,12 +19,10 @@ type ResType = {
   statusText?: string
 }
 
-export const getWeather = async (
-  location: {
-    latitude: number
-    longitude: number
-  }
-) => {
+export const getWeather = async (location: {
+  latitude: number
+  longitude: number
+}) => {
   const res = await axios.get(
     `https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${location.latitude},${location.longitude}&day=3`
   )

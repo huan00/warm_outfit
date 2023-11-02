@@ -13,8 +13,10 @@ import Weather from '../pages/Weather'
 import Avartar from '../pages/Avartar'
 import CustomBtn from '../components/CustomBtn'
 import { genderOptions, sensitivityToCold } from '../constants/PromptOptions'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate()
   const userExist = sessionStorage.getItem('warm_weather_user')
   const user: UserType = userExist ? JSON.parse(userExist) : undefined
 
@@ -78,6 +80,7 @@ const Home = () => {
   }
 
   const getoutfit = async () => {
+    setOutfit(undefined)
     if (!weatherData) return
     const InputData = {
       temperature_high: `${weatherData.forecast.forecastday[0].day.maxtemp_f} °F`,
@@ -129,38 +132,55 @@ const Home = () => {
             </div>
           ) : (
             <div className="w-full h-fit flex flex-col justify-between sm:h-full">
-              <div className="text-white">
-                {user ? (
-                  <p>User preset conditions:</p>
-                ) : (
+              {!user ? (
+                <div className="text-white">
                   <>
                     <p>Fill out the below info for an outfit.</p>
-                    <p>Create an account to save selection:</p>
+                    <p>
+                      Login or create an account to skip this step:{' '}
+                      <span
+                        className="cursor-pointer underline"
+                        onClick={() => navigate('/login')}
+                      >
+                        click here
+                      </span>
+                    </p>
                   </>
-                )}
-                <label className="text-white">Gender</label>
-                <Select
-                  options={genderOptions}
-                  value={genderSelectedOption}
-                  onChange={(e) => {
-                    if (e) {
-                      setGenderSelectedOption(e)
-                    }
-                  }}
-                />
-                <label className="text-white">
-                  On a sunny 72˚ day, how do you normally feel?
-                </label>
-                <Select
-                  options={sensitivityToCold}
-                  value={sensitivityCold}
-                  onChange={(e) => {
-                    if (e) {
-                      setSensitivityCold(e)
-                    }
-                  }}
-                />
-              </div>
+                  <label className="text-white">Gender</label>
+                  <Select
+                    className="text-black"
+                    options={genderOptions}
+                    value={genderSelectedOption}
+                    onChange={(e) => {
+                      if (e) {
+                        setGenderSelectedOption(e)
+                      }
+                    }}
+                  />
+                  <label className="text-white">
+                    On a sunny 72˚ day, how do you normally feel?
+                  </label>
+                  <Select
+                    className="text-black"
+                    options={sensitivityToCold}
+                    value={sensitivityCold}
+                    onChange={(e) => {
+                      if (e) {
+                        setSensitivityCold(e)
+                      }
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className="mt-4">
+                  <p className="text-lg text-white">
+                    Hey{' '}
+                    {user.first_name.charAt(0).toLocaleUpperCase() +
+                      user.first_name.slice(1)}
+                    , let's get your outfit for today.
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>

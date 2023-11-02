@@ -26,7 +26,7 @@ const Avartar = ({ data }: props) => {
                 categories="Tops-Jacket"
                 data={data?.tops}
                 dataTwo={data?.jacket}
-                bgActive={true}
+                // bgActive={true}
                 fullWidth={true}
               />
             </div>
@@ -36,7 +36,7 @@ const Avartar = ({ data }: props) => {
                 <GearSlot
                   category="Tops"
                   data={data?.tops}
-                  bgActive={true}
+                  // bgActive={true}
                   fullWidth={true}
                 />
               </div>

@@ -22,7 +22,7 @@ const GearSlot = ({
   }
 
   const capFirstChar = (item: string): string => {
-    if (!item) {
+    if (!item || typeof item !== 'string') {
       return item
     }
     return item[0].toUpperCase() + item.substring(1)
@@ -38,7 +38,7 @@ const GearSlot = ({
         <p className="flex text-xs font-normal text-slate-200 z-10 opacity-50">
           {categories ? categories : category}
         </p>
-        <div className="w-full px-2 flex justify-between relative top-[40%] -translate-y-2/3 z-10">
+        <div className="w-full px-2  flex justify-between relative z-10">
           <div
             className={`flex flex-col w-full text-clip items-center ${
               fullWidth ? 'mt-4' : 'mt-2'
@@ -48,32 +48,32 @@ const GearSlot = ({
               data.length > 0 ? (
                 data?.map((item) => (
                   <p
-                    className="text-center text-xl font-normal md:text-base z-10"
+                    className="text-center text-md font-normal md:text-lg z-10"
                     key={item}
                   >
                     {capFirstChar(item)}
                   </p>
                 ))
               ) : (
-                <p className="text-center text-xs md:text-base font-bold z-10">
+                <p className="text-center text-xs md:text-lg font-bold z-10">
                   {`No ${category} required`}
                 </p>
               )
             ) : (
-              <p className="text-center text-xs md:text-base font-bold z-10">
+              <p className="text-center text-xs md:text-lg font-bold z-10">
                 -{data === undefined ? `No ${category} required` : data}
               </p>
             )}
           </div>
           {categories && (
-            <div className="flex flex-col w-full mt-2 text-clip ">
+            <div className="flex flex-col w-full mt-4 items-center text-clip">
               {Array.isArray(dataTwo) ? (
                 dataTwo?.map((item) => (
                   <p
-                    className="text-center text-xs md:text-base font-bold z-10"
+                    className="text-center text-md font-normal md:text-lg z-10"
                     key={item}
                   >
-                    -{item}
+                    {item}
                   </p>
                 ))
               ) : (
